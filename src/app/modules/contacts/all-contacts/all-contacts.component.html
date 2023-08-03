@@ -1,0 +1,13 @@
+<div class="search">
+  <input (keyup)="searchByName($event)" />
+  <!-- <p>{{ values }}</p> -->
+</div>
+
+<app-single-contact
+  *ngFor="let k of searchedData"
+  [d]="k"
+  (deleteEvent)="deleteContact($event)"
+></app-single-contact>
+<!-- <div *ngFor="let i of data">
+  <app-single-contact [d]="i"></app-single-contact>
+</div> -->

@@ -1,0 +1,21 @@
+.contact-container {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 2rem;
+  margin: 1.5rem 0;
+
+  button {
+    background-color: #eee;
+    color: #f11;
+    font-weight: bold;
+    font-size: 15px;
+    border: none;
+    border-bottom: 1px solid #f11;
+    padding: 0.5rem 1.5rem;
+    transition: 0.4s;
+  }
+
+  button:hover {
+    background-color: #f11;
+    color: white;
+  }
+}
