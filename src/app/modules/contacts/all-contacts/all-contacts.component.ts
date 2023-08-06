@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import * as contacts from '../../../../assets/data.json';
 import { Contact } from 'src/models/ContactsModel';
+import { Observable } from 'rxjs';
+import { ContactsService } from 'src/app/shared/services/contacts.service';
 
 @Component({
   selector: 'app-all-contacts',
@@ -8,34 +9,17 @@ import { Contact } from 'src/models/ContactsModel';
   styleUrls: ['./all-contacts.component.scss'],
 })
 export class AllContactsComponent {
-  data: Contact[];
-  searchedData: Contact[];
+  data: Observable<Contact[]> = this._contactService.contacts;
   values = '';
 
-  constructor() {
-    this.data = Object.values(contacts);
-    this.data.pop();
-    this.data.pop();
-    console.log(this.data);
-    this.searchedData = [...this.data];
-  }
+  constructor(private _contactService: ContactsService) {}
 
-  deleteContact(ev: Contact) {
-    console.log(ev.name);
-    this.data = this.data.filter((contact) => contact.name !== ev.name);
+  deleteContact(contact: Contact) {
+    return this._contactService.deleteContacts(contact);
   }
 
   searchByName(event: any) {
     this.values = event.target.value.toUpperCase();
-    this.searchedData = this.searchedData.filter((contact) => {
-      contact.name = contact.name.toUpperCase();
-      return contact.name.includes(this.values);
-    });
-
-    if (this.searchedData.length === 0) {
-      this.searchedData = [...this.data];
-    }
-
-    console.log(this.searchedData);
+    return this._contactService.searchContact(this.values);
   }
 }

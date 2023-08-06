@@ -1,13 +1,13 @@
 <div class="search">
-  <input (keyup)="searchByName($event)" />
-  <!-- <p>{{ values }}</p> -->
+  <label for="search"> search :</label>
+  <input id="search" (keyup)="searchByName($event)" />
 </div>
 
-<app-single-contact
-  *ngFor="let k of searchedData"
-  [d]="k"
-  (deleteEvent)="deleteContact($event)"
-></app-single-contact>
-<!-- <div *ngFor="let i of data">
-  <app-single-contact [d]="i"></app-single-contact>
-</div> -->
+<a routerLink="add-contact">add Contact</a>
+
+<div class="contact-container" *ngFor="let d of data | async">
+  <p>Name : {{ d.name }}</p>
+  <p>Phone : {{ d.phone }}</p>
+
+  <button type="button" (click)="deleteContact(d)">Delete</button>
+</div>

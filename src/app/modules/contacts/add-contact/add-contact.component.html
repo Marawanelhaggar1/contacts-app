@@ -1,0 +1,10 @@
+<a routerLink="">All Contacts</a>
+
+<div class="login-form">
+  <label for="name"> name : </label>
+  <input type="text" id="name" [(ngModel)]="name" />
+
+  <label for="phone">Phone : </label>
+  <input type="text" id="phone" [(ngModel)]="phone" />
+  <button (click)="addContact()">ADD CONTACT</button>
+</div>
